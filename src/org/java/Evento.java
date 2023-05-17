@@ -44,7 +44,6 @@ public class Evento {
 			throw new Exception("Posti esauriti");
 		}
 		numPosPre = getNumPosPre() + 1; 
-		System.out.println("Hai prenotato");
 	}
 	public void disdici() throws Exception {
 		if (LocalDate.now().isAfter(getData())) {			
@@ -54,14 +53,11 @@ public class Evento {
 			throw new Exception("Non hai prenotato niente");
 		}
 		numPosPre = getNumPosPre() - 1; 
-		System.out.println("Hai disdetto");
 	}
 	
 	@Override
 	public String toString() {
 		return "titolo dell'evento: " + getTitolo()
-				+ "\ndata dell'evento: " + getData()
-				+ "\nnumero di posti totali: " + getNumPosTot()
-				+ "\nnumero di posti prenotati: " + getNumPosPre();
+				+ "\ndata dell'evento: " + getData();
 	}
 }
