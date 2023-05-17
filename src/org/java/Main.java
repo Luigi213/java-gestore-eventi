@@ -1,12 +1,17 @@
 package org.java;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Scanner;
 
 public class Main {
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
 		
+		Concerto c1 = null;
+		LocalDate data = null;
 		while (true) {
 			Evento e1 = null;
 			System.out.println("1 - Inserire nuovo evento");
@@ -21,8 +26,7 @@ public class Main {
 			String nome = in.nextLine(); 
 			System.out.println("Data dell'evento");
 			String str = in.nextLine();
-		    LocalDate data = LocalDate.parse(str);
-		    System.out.println(data);
+		    data = LocalDate.parse(str);
 			try {			
 				e1 = new Evento(nome, data);
 				System.out.println(e1);
@@ -57,5 +61,29 @@ public class Main {
 			}
 		}
 		
+		System.out.println("\n-------------------------\n");
+		
+		while(true) {
+			System.out.println("1 - Inserire nuovo concerto");
+			System.out.println("2 - Uscire");
+			int choise = in.nextInt();
+			
+			if ( choise < 1 || choise > 2 ) continue;
+			if(choise == 2) break;
+			in.nextLine();
+			
+			System.out.println("Nome del concerto");
+			String nome = in.nextLine(); 
+		    System.out.println("Orario del concerto");
+		    LocalTime ora = LocalTime.parse(in.nextLine());
+		    System.out.println("Prezzo del biglietto");
+		    BigDecimal prezzo = in.nextBigDecimal();
+			try {			
+				c1 = new Concerto(nome, data, ora , prezzo);				
+			} catch (Exception e) {
+				System.err.println("Errore nella lettura della data, " + e.getMessage());
+			}
+		}
+		System.out.println(c1);
 	}
 }
