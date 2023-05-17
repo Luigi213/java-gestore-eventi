@@ -27,6 +27,9 @@ public class ProgrammEvento {
 	public void svuota() {
 		getEvento().removeAll(evento);
 	}
+	public void count(int count) {
+		System.out.println(count);
+	}
 	
 	@Override
 	public String toString() {

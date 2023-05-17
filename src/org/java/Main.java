@@ -1,21 +1,28 @@
 package org.java;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 public class Main {
 	public static void main(String[] args) {
 		Scanner in = new Scanner(System.in);
+		
+		int count = 0;
 		
 		Concerto c1 = null;
 		LocalDate data = null;
 		Evento e1 = null;
 		
 		List<Evento> eventi = new ArrayList<>();
+		
+		Map<String, LocalDate> mapArr = new HashMap<>();
+		Map<String, LocalDate> mapArrOrder = new TreeMap<>();
 		
 		ProgrammEvento p1 = new ProgrammEvento("programma eventi", eventi);
 		
@@ -36,6 +43,9 @@ public class Main {
 			try {			
 				e1 = new Evento(nome, data);
 				eventi.add(new Evento(nome, data));
+				mapArr.put(nome, data);
+				count++;
+				mapArrOrder.put(nome, data);
 				
 			} catch (Exception e) {
 				System.err.println("Errore nella lettura della data, " + e.getMessage());
@@ -67,30 +77,49 @@ public class Main {
 			}
 		}
 		
+		in.nextLine();
+		
+		System.out.println("Scegli un data specifica");
+		String key = in.nextLine();
+		System.out.println("Eventi in data scelta:");
+		mapArr.forEach((index, value) -> System.out.println(value.equals(LocalDate.parse(key)) ? value + " - " + index : ""));
+		
+		
 		System.out.println("\n-------------------------\n");
 		
-		while(true) {
-			System.out.println("1 - Inserire nuovo concerto");
-			System.out.println("2 - Uscire");
-			int choise = in.nextInt();
-			
-			if ( choise < 1 || choise > 2 ) continue;
-			if(choise == 2) break;
-			in.nextLine();
-			
-			System.out.println("Nome del concerto");
-			String nome = in.nextLine(); 
-		    System.out.println("Orario del concerto");
-		    LocalTime ora = LocalTime.parse(in.nextLine());
-		    System.out.println("Prezzo del biglietto");
-		    BigDecimal prezzo = in.nextBigDecimal();
-			try {			
-				c1 = new Concerto(nome, data, ora , prezzo);				
-			} catch (Exception e) {
-				System.err.println("Errore nella lettura della data, " + e.getMessage());
-			}
-		}
-		System.out.println(c1);
+		System.out.println("numero di eventi presenti: " + count);
+		
+		System.out.println("\n-------------------------\n");
+		
+		System.out.println("lista completa degli eventi(ordinata): ");
+		mapArrOrder.forEach((index, value) -> System.out.println(value + " - " + index));
+		
+		System.out.println("\n-------------------------\n");
+//		
+//		while(true) {
+//			System.out.println("1 - Inserire nuovo concerto");
+//			System.out.println("2 - Uscire");
+//			int choise = in.nextInt();
+//			
+//			if ( choise < 1 || choise > 2 ) continue;
+//			if(choise == 2) break;
+//			in.nextLine();
+//			
+//			System.out.println("Nome del concerto");
+//			String nome = in.nextLine(); 
+//		    System.out.println("Orario del concerto");
+//		    LocalTime ora = LocalTime.parse(in.nextLine());
+//		    System.out.println("Prezzo del biglietto");
+//		    BigDecimal prezzo = in.nextBigDecimal();
+//			try {			
+//				c1 = new Concerto(nome, data, ora , prezzo);				
+//			} catch (Exception e) {
+//				System.err.println("Errore nella lettura della data, " + e.getMessage());
+//			}
+//		}
+//		System.out.println(c1);
+//		
+//		System.out.println("-------------------------");
 		
 		System.out.println(p1);
 	}
