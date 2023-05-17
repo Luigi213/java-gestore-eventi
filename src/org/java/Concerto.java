@@ -35,9 +35,9 @@ public class Concerto extends Evento{
 	
 	@Override
 	public String toString() {
-		return "data concerto: " + getDataFormat()
-				+ "\nora concerto: " + getTimeFormat()
-				+ "\ntitolo concerto: " + getTitolo()
-				+ "\nprezzo concerto: " + getPrezzo() + "€";
+		return getDataFormat()
+				+ " - " + getTimeFormat()
+				+ " - " + getTitolo()
+				+ " - " + getPrezzo() + "€";
 	}
 }

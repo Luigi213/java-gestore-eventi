@@ -63,7 +63,7 @@ public class Evento {
 	
 	@Override
 	public String toString() {
-		return "titolo dell'evento: " + getTitolo()
-				+ "\ndata dell'evento: " + getDataFormat();
+		return "[" + "titolo dell'evento: " + getTitolo()
+				+ "\ndata dell'evento: " + getDataFormat() + "]";
 	}
 }

@@ -1,9 +1,10 @@
 package org.java;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -12,8 +13,13 @@ public class Main {
 		
 		Concerto c1 = null;
 		LocalDate data = null;
+		Evento e1 = null;
+		
+		List<Evento> eventi = new ArrayList<>();
+		
+		ProgrammEvento p1 = new ProgrammEvento("programma eventi", eventi);
+		
 		while (true) {
-			Evento e1 = null;
 			System.out.println("1 - Inserire nuovo evento");
 			System.out.println("2 - Uscire");
 			int choise = in.nextInt();
@@ -29,7 +35,7 @@ public class Main {
 		    data = LocalDate.parse(str);
 			try {			
 				e1 = new Evento(nome, data);
-				System.out.println(e1);
+				eventi.add(new Evento(nome, data));
 				
 			} catch (Exception e) {
 				System.err.println("Errore nella lettura della data, " + e.getMessage());
@@ -85,5 +91,7 @@ public class Main {
 			}
 		}
 		System.out.println(c1);
+		
+		System.out.println(p1);
 	}
 }
