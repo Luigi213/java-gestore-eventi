@@ -2,7 +2,6 @@ package org.java;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -82,8 +81,13 @@ public class Main {
 		System.out.println("Scegli un data specifica");
 		String key = in.nextLine();
 		System.out.println("Eventi in data scelta:");
-		mapArr.forEach((index, value) -> System.out.println(value.equals(LocalDate.parse(key)) ? value + " - " + index : ""));
+		for(String c : mapArr.keySet()) {
+			if(mapArr.get(c).equals(LocalDate.parse(key))) {
+				System.out.println(mapArr.get(c) + " - " + c);
+			}
+		}
 		
+		in.close();
 		
 		System.out.println("\n-------------------------\n");
 		
